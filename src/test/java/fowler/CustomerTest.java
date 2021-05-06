@@ -3,24 +3,29 @@ package fowler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CustomerTest {
 
     private Rental testRental;
     private Customer testCustomer;
-    private Movie testMovie;
 
     @BeforeEach
     void setUp() {
         testCustomer = new Customer("Max Mustermann");
-        testMovie = new Movie("Test", Movie.NEW_RELEASE);
-        testRental = new Rental(testMovie, 5);
+        Movie testMovie = new Movie("Test", Movie.NEW_RELEASE);
+        testRental = new Rental(testMovie, 10);
     }
 
     @Test
     void addRental() {
         testCustomer.addRental(testRental);
+        String expectedResult = "Rental Record for " + testCustomer.getName() + "\n";
+        expectedResult += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        expectedResult += "\t" + "Test" + "\t" + "\t" + 10 + "\t" + 30.0 + "\n";
+        expectedResult += "Amount owed is " + 30.0 + "\n";
+        expectedResult += "You earned " + 2 + " frequent renter points";
+        assertEquals(expectedResult, testCustomer.statement());
     }
 
     @Test
