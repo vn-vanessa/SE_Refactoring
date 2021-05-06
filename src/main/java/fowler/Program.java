@@ -13,8 +13,8 @@ public class Program {
     public static void main(String args[]) {
         String result;
         System.out.println("Welcome to the Movie Store");
-        Movie movie1 = new Movie("movie1", 1);
-        Movie movie2 = new Movie("movie2", 2);
+        Movie movie1 = new Movie("movie1", PriceCode.NEW_RELEASE);
+        Movie movie2 = new Movie("movie2", PriceCode.CHILDRENS);
         Rental rental = new Rental(movie1, 10);
         Rental rental1 = new Rental(movie2, 5);
         Customer customer1 = new Customer("joe");

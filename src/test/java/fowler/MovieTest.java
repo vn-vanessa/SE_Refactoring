@@ -11,18 +11,18 @@ class MovieTest {
 
     @BeforeEach
     void setUp() {
-        testMovie = new Movie("Test", Movie.NEW_RELEASE);
+        testMovie = new Movie("Test", PriceCode.NEW_RELEASE);
     }
 
     @Test
     void getPriceCode() {
-        assertEquals(testMovie.getPriceCode(), 1);
+        assertEquals(testMovie.getPriceCode().getIntOfPriceCode(), 1);
     }
 
     @Test
     void setPriceCode() {
-        testMovie.setPriceCode(Movie.CHILDRENS);
-        assertEquals(testMovie.getPriceCode(), 2);
+        testMovie.setPriceCode(PriceCode.CHILDRENS);
+        assertEquals(testMovie.getPriceCode().getIntOfPriceCode(), 2);
     }
 
     @Test

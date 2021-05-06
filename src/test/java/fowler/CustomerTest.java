@@ -13,7 +13,7 @@ class CustomerTest {
     @BeforeEach
     void setUp() {
         testCustomer = new Customer("Max Mustermann");
-        Movie testMovie = new Movie("Test", Movie.NEW_RELEASE);
+        Movie testMovie = new Movie("Test", PriceCode.NEW_RELEASE);
         testRental = new Rental(testMovie, 10);
     }
 
@@ -35,7 +35,7 @@ class CustomerTest {
 
     @Test
     void statement() {
-        testCustomer.addRental(new Rental(new Movie("Test", Movie.NEW_RELEASE), 5));
+        testCustomer.addRental(new Rental(new Movie("Test", PriceCode.NEW_RELEASE), 5));
         String expectedResult = "Rental Record for " + testCustomer.getName() + "\n";
         expectedResult += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
         expectedResult += "\t" + "Test" + "\t" + "\t" + 5 + "\t" + 15.0 + "\n";
