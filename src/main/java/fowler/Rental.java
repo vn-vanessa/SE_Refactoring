@@ -33,6 +33,8 @@ class Rental {
                 if (this.getDaysRented() > 3)
                     amount += (this.getDaysRented() - 3) * 1.5;
                 break;
+            default:
+                break;
         }
         return amount;
     }
