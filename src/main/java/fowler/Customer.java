@@ -33,7 +33,7 @@ class Customer {
         StringBuilder statementForAllRentals = new StringBuilder();
         while (enum_rentals.hasMoreElements()) {
             Rental rental = (Rental) enum_rentals.nextElement();
-            statementForAllRentals.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + amountFor(rental) + "\n");
+            statementForAllRentals.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmount() + "\n");
         }
         return statementForAllRentals.toString();
     }
@@ -44,7 +44,7 @@ class Customer {
 
         while (enum_rentals.hasMoreElements()) {
             Rental rental = (Rental) enum_rentals.nextElement();
-            totalAmount += amountFor(rental);
+            totalAmount += rental.getAmount();
         }
 
         return totalAmount;
@@ -62,25 +62,4 @@ class Customer {
         }
         return frequentRenterPoints;
     }
-
-    private double amountFor(Rental rental) {
-        double thisAmount = 0;
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (rental.getDaysRented() > 2)
-                    thisAmount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += rental.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    thisAmount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
-    }
-
 }
