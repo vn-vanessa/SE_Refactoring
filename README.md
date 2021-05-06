@@ -11,3 +11,4 @@ Reformat Code   | Strg + Alt + L
 Refactor Item   | Select Item, press Ctrl + Alt + Shift + T
 Create Test     | Place caret at the class for which you want to create a test, press Alt + Enter -> select Create Test 
 Optimize Imports| Strg + Alt + O
+Extract Method  | Strg + Alt + M
