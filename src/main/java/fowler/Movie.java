@@ -1,19 +1,17 @@
 package fowler;
 
-public class Movie {
-    private PriceCode priceCode;
+public abstract class Movie {
     private String movieTitle;
 
-    public Movie(String newtitle, PriceCode priceCode) {
+    public Movie(String newtitle) {
         movieTitle = newtitle;
-        this.priceCode = priceCode;
-    }
-
-    public PriceCode getPriceCode() {
-        return priceCode;
     }
 
     public String getTitle() {
         return movieTitle;
+    }
+
+    public double getMoviePrice(int daysRented) {
+        return 0.0;
     }
 }

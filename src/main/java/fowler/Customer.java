@@ -20,46 +20,28 @@ class Customer {
     }
 
     public String statement() {
-        String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
-        result += getStatementForAllRentals();
-        result += "Amount owed is " + getTotalAmount() + "\n";
-        result += "You earned " + getFrequentRenterPoints() + " frequent renter points";
-        return result;
-    }
-
-    private String getStatementForAllRentals() {
-        Enumeration enum_rentals = rentals.elements();
-        StringBuilder statementForAllRentals = new StringBuilder();
-        while (enum_rentals.hasMoreElements()) {
-            Rental rental = (Rental) enum_rentals.nextElement();
-            statementForAllRentals.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmountForMovie() + "\n");
-        }
-        return statementForAllRentals.toString();
-    }
-
-    private double getTotalAmount() {
         Enumeration enum_rentals = rentals.elements();
         double totalAmount = 0;
-
+        int frequentRenterPoints = 0;
+        StringBuilder statement = new StringBuilder();
+        statement.append("Rental Record for " + this.getName() + "\n");
+        statement.append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n");
         while (enum_rentals.hasMoreElements()) {
             Rental rental = (Rental) enum_rentals.nextElement();
-            totalAmount += rental.getAmountForMovie();
+            totalAmount += getTotalAmount(rental);
+            frequentRenterPoints += getFrequentRenterPoints(rental);
+            statement.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + String.valueOf(rental.getMovie().getMoviePrice(rental.getDaysRented())) + "\n");
         }
-
-        return totalAmount;
+        statement.append("Amount owed is " + totalAmount + "\n");
+        statement.append("You earned " + frequentRenterPoints + " frequent renter points");
+        return statement.toString();
     }
 
-    private int getFrequentRenterPoints() {
-        int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();
+    private double getTotalAmount(Rental rental) {
+        return rental.getMovie().getMoviePrice(rental.getDaysRented());
+    }
 
-        while (enum_rentals.hasMoreElements()) {
-            Rental rental = (Rental) enum_rentals.nextElement();
-            frequentRenterPoints++;
-            if ((rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE) && rental.getDaysRented() > 1)
-                frequentRenterPoints++;
-        }
-        return frequentRenterPoints;
+    private int getFrequentRenterPoints(Rental rental) {
+        return rental.calcPoints();
     }
 }

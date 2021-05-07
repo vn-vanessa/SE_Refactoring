@@ -11,12 +11,7 @@ class MovieTest {
 
     @BeforeEach
     void setUp() {
-        testMovie = new Movie("Test", PriceCode.NEW_RELEASE);
-    }
-
-    @Test
-    void getPriceCode() {
-        assertEquals(testMovie.getPriceCode().getIntOfPriceCode(), 1);
+        testMovie = new Regular("Test");
     }
 
     @Test

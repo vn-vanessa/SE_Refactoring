@@ -17,25 +17,11 @@ class Rental {
         return movie;
     }
 
-    public double getAmountForMovie() {
-        double amount = 0;
-        switch (this.getMovie().getPriceCode()) {
-            case REGULAR:
-                amount += 2;
-                if (this.getDaysRented() > 2)
-                    amount += (this.getDaysRented() - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                amount += this.getDaysRented() * 3;
-                break;
-            case CHILDRENS:
-                amount += 1.5;
-                if (this.getDaysRented() > 3)
-                    amount += (this.getDaysRented() - 3) * 1.5;
-                break;
-            default:
-                break;
+    public int calcPoints() {
+        if ((this.movie instanceof NewRelease) && this.daysRented > 1) {
+            return 2;
+        } else {
+            return 1;
         }
-        return amount;
     }
 }
