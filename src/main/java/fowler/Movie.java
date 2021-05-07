@@ -13,10 +13,6 @@ public class Movie {
         return priceCode;
     }
 
-    public void setPriceCode(PriceCode priceCode) {
-        this.priceCode = priceCode;
-    }
-
     public String getTitle() {
         return movieTitle;
     }

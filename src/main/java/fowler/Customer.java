@@ -33,7 +33,7 @@ class Customer {
         StringBuilder statementForAllRentals = new StringBuilder();
         while (enum_rentals.hasMoreElements()) {
             Rental rental = (Rental) enum_rentals.nextElement();
-            statementForAllRentals.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmount() + "\n");
+            statementForAllRentals.append("\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmountForMovie() + "\n");
         }
         return statementForAllRentals.toString();
     }
@@ -44,7 +44,7 @@ class Customer {
 
         while (enum_rentals.hasMoreElements()) {
             Rental rental = (Rental) enum_rentals.nextElement();
-            totalAmount += rental.getAmount();
+            totalAmount += rental.getAmountForMovie();
         }
 
         return totalAmount;

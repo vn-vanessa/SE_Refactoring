@@ -20,12 +20,6 @@ class MovieTest {
     }
 
     @Test
-    void setPriceCode() {
-        testMovie.setPriceCode(PriceCode.CHILDRENS);
-        assertEquals(testMovie.getPriceCode().getIntOfPriceCode(), 2);
-    }
-
-    @Test
     void getTitle() {
         assertEquals("Test", testMovie.getTitle());
     }
